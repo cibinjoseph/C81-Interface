@@ -10,7 +10,7 @@ program demo
 
    call readC81('Samples/sample1.C81',airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
 
-   call writeC81('Samples/sample_out.C81',airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
+   call writeC81('Samples/sampleOutput.C81',airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
 
    A=getTable('Samples/sample1.csv',4,4)
    print*,A
