@@ -81,7 +81,7 @@ contains
     character(len=10) :: formatChar
 
     open(unit=10,file=C81filename, status='new', action='write', iostat=stat)
-    if (stat>0) error stop 'ERROR: File already exists or not able to write to'
+    if (stat>0) error stop 'ERROR: File already exists'
 
     ML = size(MaL,1)
     MD = size(MaD,1)
