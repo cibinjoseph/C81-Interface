@@ -4,7 +4,7 @@ Subroutines for reading and writing C81 airfoil tables
 **libC81.f90**  
 Module file containing subroutines for read/write of C81 airfoil tables and for data extraction from csv formated file
 
-**demo.f90**
+**demo.f90**  
 Demo file for illustration
 
 ## Usage
@@ -17,6 +17,5 @@ Demo file for illustration
 [Cibin Joseph](https://github.com/cibinjoseph) (cibinjoseph92@gmail.com)
 
 ## License
-MIT License 2019
+MIT License 2019  
 See [LICENSE](LICENSE) for full text.
-
