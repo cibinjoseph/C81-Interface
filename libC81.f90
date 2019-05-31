@@ -10,9 +10,12 @@ contains
     real, allocatable, intent(out), dimension(:,:) :: CL, CD, CM
     integer :: ML, NL, MD, ND, MM, NM
     integer :: i, j
+    integer :: stat
     character(len=10) :: formatChar
 
-    open(unit=10,file=C81filename)
+    open(unit=10, file=C81filename, status='old', action='read', iostat=stat)
+    if (stat>0) error stop 'ERROR: File not found'
+
     read(10,100) airfoil_name,ML,NL,MD,ND,MM,NM
     allocate(MaL(ML))
     allocate(MaD(MD))
@@ -72,9 +75,12 @@ contains
     real, intent(in), dimension(:,:) :: CL, CD, CM
     integer :: ML, NL, MD, ND, MM, NM
     integer :: i, j
+    integer :: stat
     character(len=10) :: formatChar
 
-    open(unit=10,file=C81filename)
+    open(unit=10,file=C81filename, status='new', action='write', iostat=stat)
+    if (stat>0) error stop 'ERROR: File already exists or not able to write to'
+
     ML = size(MaL,1)
     MD = size(MaD,1)
     MM = size(MaM,1)
@@ -123,5 +129,20 @@ contains
     102 format (F7.2,9F7.3)
   end subroutine writeC81
 
+  ! Function that gets data from file with data in csv format
+  function getTable(filename,rows,cols)
+    character(len=*), intent(in) :: filename
+    integer, intent(in) :: rows, cols
+    integer :: i, j
+    integer :: stat
+    real, dimension(rows,cols) :: getTable
+
+    open(unit=10, file=filename, status='old', action='read', iostat=stat)
+    if (stat>0) error stop 'ERROR: File not found'
+    do i=1,rows
+      read(10,*) (getTable(i,j),j=1,cols)
+    enddo
+    close(10)
+  end function getTable
 
 end module libC81
