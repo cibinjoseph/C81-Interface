@@ -2,6 +2,7 @@ module libC81
   implicit none
 contains
 
+  ! Reads from C81 file to allocatable arrays
   subroutine readC81(C81filename,airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
     character(len=*), intent(in) :: C81filename
     character(len=30), intent(out) :: airfoil_name
@@ -67,6 +68,7 @@ contains
     102 format (10F7.0)
   end subroutine readC81
 
+  ! Writes data arrays to C81 file
   subroutine writeC81(C81filename,airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
     character(len=*), intent(in) :: C81filename
     character(len=30), intent(in) :: airfoil_name
@@ -129,7 +131,7 @@ contains
     102 format (F7.2,9F7.3)
   end subroutine writeC81
 
-  ! Function that gets data from file with data in csv format
+  ! Gets data from csv formatted file
   function getTable(filename,rows,cols)
     character(len=*), intent(in) :: filename
     integer, intent(in) :: rows, cols
