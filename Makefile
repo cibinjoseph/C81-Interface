@@ -7,9 +7,9 @@ all:
 lib:
 	$(FC) -c libC81.f90
 
-demo:
+demo1:
 	make lib
-	$(FC) demo.f90 libC81.o -o demo.out
+	$(FC) demo1.f90 libC81.o -o demo1.out
 
 clean:
 	rm -f *.o *.mod *.out

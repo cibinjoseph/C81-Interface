@@ -1,4 +1,9 @@
-program demo
+! This demo program reads the C81 file sample1.C81 and writes the values read to
+! an output file sampleOutput.C81. Both files are in the Samples/ directory.
+! The working demo for the getTable() function, similar to dlmread() in Matlab, is also provided
+
+program demo1
+
   use libC81
   implicit none
 
@@ -24,5 +29,4 @@ program demo
   A=getTable('Samples/sample1.csv',rows,cols)
   print*,A
 
-
-end program demo
+end program demo1
