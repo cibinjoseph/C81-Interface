@@ -147,4 +147,20 @@ contains
     close(10)
   end function getTable
 
+  ! Gets lower index containing xquery value in xvec array
+  function getLowerIndex(xvec,xquery)
+    real, intent(in), dimension(:) :: xvec
+    real, intent(in) :: xquery
+    integer :: getLowerIndex
+
+    ! Check min and max values of xvec
+    if (xquery < xvec(1) .or. xquery > xvec(size(xvec,1))) then
+      error stop 'Error: Queried value not in range'
+    else
+      getLowerIndex = floor()
+    endif
+
+  end function getLowerIndex
+
+
 end module libC81
