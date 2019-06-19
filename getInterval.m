@@ -1,4 +1,4 @@
-function [L,R] = getInterval(A,S)
+function [L,R] = getInterval_my(A,S)
   % Uses binary search to determine interval 
   % in which S lies in sorted array A
   % A is assumed to be a sorted 1-d array
@@ -7,24 +7,23 @@ function [L,R] = getInterval(A,S)
   n = length(A);
   R = n;
 
-  if (abs(A(n) - S) > eps)  % if last element is not S
-    % Binary search algorithm
-    while ((L ~= R) && (R ~= L+1))
-      i = floor((L+R)*0.5);
-      if (A(i) <= S)
-        L = i+1;
-      else
-        R = i;
-      end
+  % Binary search algorithm
+  while ((L~=R) && (R ~= (L+1)))
+    i = floor((L+R)*0.5);
+    if (S < A(i))
+      R = i;
+    elseif (S > A(i))
+      L = i;
+    else
+      L = i;
+      R = i;
     end
-    L = max(L-1,1);
-  else  % if last element is S
-    L = n;
-    R = n;
   end
 
-  if (abs(A(L)-S) <= eps)  % if first element is S
+  % Check end cases 
+  if (abs(A(L)-S) <= eps)
     R = L;
+  elseif (abs(A(R)-S) <= eps)
+    L = R;
   end
-
   return;
