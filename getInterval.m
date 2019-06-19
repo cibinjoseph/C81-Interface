@@ -1,4 +1,8 @@
-function [L,R] = binarySearch(A,S)
+function [L,R] = getInterval(A,S)
+  % Uses binary search to determine interval 
+  % in which S lies in sorted array A
+  % A is assumed to be a sorted 1-d array
+
   L = 1;
   n = length(A);
   R = n;
@@ -14,13 +18,13 @@ function [L,R] = binarySearch(A,S)
       end
     end
     L = max(L-1,1);
-    if (abs(A(L)-S) <= eps)  % if first element is S
-      R = L;
-    end
   else  % if last element is S
-    i = n;
     L = n;
     R = n;
   end
-  [L R]
+
+  if (abs(A(L)-S) <= eps)  % if first element is S
+    R = L;
+  end
+
   return;
