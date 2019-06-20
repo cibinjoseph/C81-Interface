@@ -147,20 +147,37 @@ contains
     close(10)
   end function getTable
 
-  ! Gets lower index containing xquery value in xvec array
-  function getLowerIndex(xvec,xquery)
-    real, intent(in), dimension(:) :: xvec
-    real, intent(in) :: xquery
-    integer :: getLowerIndex
+  ! Returns upper and lower indices of a 1-d sorted array 
+  ! using binary search in which a search value lies 
+  function getInterval(A,x) result(indx)
+    real, intent(in), dimension(:) :: A
+    real, intent(in) :: x
+    integer, dimension(2) :: indx  ! Left and right indices 
+    integer :: n, i
 
-    ! Check min and max values of xvec
-    if (xquery < xvec(1) .or. xquery > xvec(size(xvec,1))) then
-      error stop 'Error: Queried value not in range'
-    else
-      getLowerIndex = floor()
+    n = size(A,1)
+    indx(1) = 1
+    indx(2) = n
+
+    ! Binary search algorithm
+    do while ((indx(1) .ne. indx(2)) .and. (indx(2) .ne. (indx(1)+1)))
+      i = floor((indx(1)+indx(2))*0.5)
+      if (x < A(i)) then
+        indx(2) = i
+      elseif (x > A(i)) then
+        indx(1) = i
+      else
+        indx(1) = i
+        indx(2) = i
+      endif
+    enddo
+
+    ! Check end cases
+    if (abs(A(indx(1))-x) .le. epsilon(1.)) then
+      indx(2) = indx(1)
+    elseif (abs(A(indx(2))-x) .le. epsilon(1.)) then
+      indx(1) = indx(2)
     endif
-
-  end function getLowerIndex
-
+  end function getInterval
 
 end module libC81
