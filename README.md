@@ -5,7 +5,7 @@ Subroutines for reading and writing C81 airfoil tables
 Module file containing subroutines for read/write of C81 airfoil tables and for data extraction from CSV formated file
 
 **demo1.f90**  
-Demo file for illustration
+Demo file for illustration of subroutines in libC81
 
 **demo2.f90**  
 Demo file for illustration of creating C81 file from CSV file
