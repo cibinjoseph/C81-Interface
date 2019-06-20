@@ -1,4 +1,4 @@
-function [L,R] = getInterval_my(A,S)
+function [L,R] = getInterval(A,S)
   % Uses binary search to determine interval 
   % in which S lies in sorted array A
   % A is assumed to be a sorted 1-d array
