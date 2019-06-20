@@ -23,10 +23,15 @@ program demo1
   ! Write airfoil data to C81 file
   call writeC81('Samples/sampleOutput.C81',airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
 
-  ! Demo of subroutine to read tabular data from csv file to Fortran array
+  ! Read tabular data from csv file to Fortran array
   ! Works similar to dlmread() from Matlab
   ! Useful for creating arrays from airfoil data in CSV format
   A=getTable('Samples/sample1.csv',rows,cols)
   print*,A
+
+  ! Find left and right indices from 1-d sorted array in which
+  ! a queried value lies
+  print*, A(1,:)
+  print*, getInterval(A(1,:),0.15)
 
 end program demo1
