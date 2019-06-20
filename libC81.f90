@@ -79,9 +79,15 @@ contains
     integer :: i, j
     integer :: stat
     character(len=10) :: formatChar
+    character(len=1) :: overwriteOption
 
     open(unit=10,file=C81filename, status='new', action='write', iostat=stat)
-    if (stat>0) error stop 'ERROR: File already exists'
+    if (stat>0) then
+      print*, 'File '//trim(C81filename)//' already exists!'
+      print*, 'Okay to overwrite (y/n)?'
+      read(*,*) overwriteOption
+      if (overwriteOption .ne. 'y') stop
+    endif
 
     ML = size(MaL,1)
     MD = size(MaD,1)
