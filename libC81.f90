@@ -84,8 +84,9 @@ contains
     open(unit=10,file=C81filename, status='new', action='write', iostat=stat)
     if (stat>0) then
       print*, 'File '//trim(C81filename)//' already exists!'
-      print*, 'Okay to overwrite (y/n)?'
+      write(*,'(A)',advance='no') ' Okay to overwrite (y/n)? '
       read(*,*) overwriteOption
+      print*
       if (overwriteOption .ne. 'y') stop
     endif
 
