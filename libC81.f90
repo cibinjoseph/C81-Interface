@@ -187,4 +187,23 @@ contains
     endif
   end function getInterval
 
+  ! Returns value of 2-d interpolated value
+  ! for given xs and ys queries
+  function get2dVal(func,x,y,xs,ys)
+    real, intent(in), dimension(:,:) :: func
+    real, intent(in), dimension(:) :: x, y
+    real, intent(in) :: xs, ys
+    real :: get2dVal
+    integer, dimension(2) :: xindx, yindx
+
+    xindx = getInterval(x,xs)
+    yindx = getInterval(y,ys)
+
+    get2dVal = func(xindx(1),yindx(1)) + &
+      func(xindx(1),yindx(2)) + &
+      func(xindx(2),yindx(1)) + &
+      func(xindx(2),yindx(2))
+    get2dVal = get2dVal*0.25
+  end function get2dVal
+
 end module libC81

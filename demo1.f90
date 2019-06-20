@@ -20,19 +20,19 @@ program demo1
 
   ! Read airfoil data from C81 file
   call readC81('Samples/sample1.C81',airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
-  print*, 'Airfoil data read successful'
+  print*, 'Airfoil data read SUCCESSFUL'
   print*
 
   ! Write airfoil data to C81 file
   call writeC81('Samples/sampleOutput.C81',airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
-  print*, 'Airfoil data write successful'
+  print*, 'Airfoil data write SUCCESSFUL'
   print*
 
   ! Read tabular data from csv file to Fortran array
   ! Works similar to dlmread() from Matlab
   ! Useful for creating arrays from airfoil data in CSV format
-  A=getTable('Samples/sample1.csv',rows,cols)
-  print*, 'Tabular data read successful'
+  A = getTable('Samples/sample1.csv',rows,cols)
+  print*, 'Tabular data read SUCCESSFUL'
   print*
 
   do i=1,size(A,1)
@@ -44,7 +44,12 @@ program demo1
   ! a queried value lies
   print*, A(1,:)
   print*, getInterval(A(1,:),0.15)
-  print*, 'Binary search successful'
+  print*, 'Binary search SUCCESSFUL'
+
+  ! Return 2-d interpolated value from 2-d array
+  print*
+  print*, get2dVal(CL,AL,MaL,-14.5,0.425)
+  print*, '2-d interpolation SUCCESSFUL'
 
 end program demo1
 
