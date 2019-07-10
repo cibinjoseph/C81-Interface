@@ -10,21 +10,18 @@ program demo1
   integer, parameter :: rows = 4
   integer, parameter :: cols = 4
 
-  character(len=30) :: airfoil_name
-  real, allocatable, dimension(:) :: MaL, MaD, MaM
-  real, allocatable, dimension(:) :: AL, AD, AM
-  real, allocatable, dimension(:,:) :: CL, CD, CM
+  type(C81_class) :: C81
   real, dimension(4,4) :: A
   integer :: i,j
 
 
   ! Read airfoil data from C81 file
-  call readC81('Samples/sample1.C81',airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
+  call C81%readfile('Samples/sample1.C81')
   print*, 'Airfoil data read SUCCESSFUL'
   print*
 
   ! Write airfoil data to C81 file
-  call writeC81('Samples/sampleOutput.C81',airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
+  call C81%writefile('Samples/sampleOutput.C81')
   print*, 'Airfoil data write SUCCESSFUL'
   print*
 
@@ -48,7 +45,7 @@ program demo1
 
   ! Return 2-d interpolated value from 2-d array
   print*
-  print*, get2dVal(CL,AL,MaL,-14.5,0.425)
+  print*, C81%getCL(-14.5,0.425)
   print*, '2-d interpolation SUCCESSFUL'
 
 end program demo1
