@@ -15,5 +15,10 @@ demo2:
 	make lib
 	$(FC) demo2.f90 libC81.o -o demo2.out
 
+change:
+	@make -s demo2
+	@yes y | ./demo2.out
+	@diff -q prevCopy Samples/naca6403_Re20k.C81
+
 clean:
 	rm -f *.o *.mod *.out
