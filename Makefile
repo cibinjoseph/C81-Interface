@@ -18,7 +18,7 @@ demo2:
 change:
 	@make -s demo2
 	@yes y | ./demo2.out
-	@diff -q prevCopy Samples/naca6403_Re20k.C81
+	@diff -q prevCopy Samples/naca6403_Re20k.C81 || exit 0
 
 clean:
 	rm -f *.o *.mod *.out
