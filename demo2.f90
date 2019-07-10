@@ -11,10 +11,7 @@ program demo2
   integer, parameter :: nMach = 3
   integer :: i
 
-  character(len=30) :: airfoil_name
-  real, allocatable, dimension(:) :: MaL, MaD, MaM
-  real, allocatable, dimension(:) :: AL, AD, AM
-  real, allocatable, dimension(:,:) :: CL, CD, CM
+  type(C81_class) :: C81
   real, dimension(rows,cols) :: A
 
 
@@ -22,36 +19,36 @@ program demo2
   A=getTable('Samples/naca6403_Re20k.csv',rows,cols)
 
   ! Allocate arrays
-  allocate(MaL(nMach))
-  allocate(MaD(nMach))
-  allocate(MaM(nMach))
-  allocate(AL(rows))
-  allocate(AD(rows))
-  allocate(AM(rows))
-  allocate(CL(rows,nMach))
-  allocate(CD(rows,nMach))
-  allocate(CM(rows,nMach))
+  allocate(C81%MaL(nMach))
+  allocate(C81%MaD(nMach))
+  allocate(C81%MaM(nMach))
+  allocate(C81%AL(rows))
+  allocate(C81%AD(rows))
+  allocate(C81%AM(rows))
+  allocate(C81%CL(rows,nMach))
+  allocate(C81%CD(rows,nMach))
+  allocate(C81%CM(rows,nMach))
 
   ! Specify airfoil name
-  airfoil_name = 'NACA6403_Re20k'
+  C81%airfoilName = 'NACA6403_Re20k'
 
   ! Copy values from read array to variables
-  MaL = (/0.0, 0.5, 0.9/)
-  MaD = MaL
-  MaM = MaL
+  C81%MaL = (/0.0, 0.5, 0.9/)
+  C81%MaD = C81%MaL
+  C81%MaM = C81%MaL
 
-  AL = A(:,1)
-  AD = AL
-  AM = AL
+  C81%AL = A(:,1)
+  C81%AD = C81%AL
+  C81%AM = C81%AL
 
   do i=1,nMach
-    CL(:,i) = A(:,2)
+    C81%CL(:,i) = A(:,2)
   enddo
 
-  CD = CL
-  CM = CL
+  C81%CD = C81%CL
+  C81%CM = C81%CL
 
   ! Write airfoil data to C81 file
-  call writeC81('Samples/naca6403_Re20k.C81',airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
+  call c81%writefile('Samples/naca6403_Re20k.C81')
 
 end program demo2

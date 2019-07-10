@@ -1,11 +1,89 @@
 module libC81
   implicit none
+
+  ! Define C81 class
+  type C81_class
+    character(len=30) :: airfoilName
+    integer :: ML, NL, MD, ND, MM, NM
+    real, allocatable, dimension(:) :: MaL, MaD, MaM
+    real, allocatable, dimension(:) :: AL, AD, AM
+    real, allocatable, dimension(:,:) :: CL, CD, CM
+  contains
+    procedure :: writefile
+  end type C81_class
+
 contains
 
-  ! Reads from C81 file to allocatable arrays
-  subroutine readC81(C81filename,airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
+  ! Writes data arrays to C81 file
+  subroutine writefile(this,C81filename)
+  class(C81_class) :: this
     character(len=*), intent(in) :: C81filename
-    character(len=30), intent(out) :: airfoil_name
+    integer :: i, j
+    integer :: stat
+    character(len=10) :: formatChar
+    character(len=1) :: overwriteOption
+
+    open(unit=10,file=C81filename, status='new', action='write', iostat=stat)
+    if (stat>0) then
+      print*, 'File '//trim(C81filename)//' already exists!'
+      write(*,'(A)',advance='no') ' Okay to overwrite (y/n)? '
+      read(*,*) overwriteOption
+      print*
+      if (overwriteOption .ne. 'y') stop
+    endif
+
+    this%ML = size(this%MaL,1)
+    this%MD = size(this%MaD,1)
+    this%MM = size(this%MaM,1)
+    this%NL = size(this%AL,1)
+    this%ND = size(this%AD,1)
+    this%NM = size(this%AM,1)
+
+    write(10,100) this%airfoilName,this%ML,this%NL,this%MD,this%ND,this%MM,this%NM
+    ! Lift
+    write(10,101) (this%MaL(i),i=1,min(9,this%ML))
+    if (this%ML>9) then 
+      write(formatChar,'(A4,I1,A5)') '(7X,',this%ML-9,'F7.3)'
+      write(10,formatChar) (this%MaL(i),i=10,this%ML)
+    endif
+    do i=1,this%NL
+      write(10,102) this%AL(i), (this%CL(i,j),j=1,min(9,this%ML))
+      if (this%ML>9)  write(10,formatChar) (this%CL(i,j),j=10,this%ML)
+    enddo
+
+    ! Drag
+    write(10,101) (this%MaD(i),i=1,min(9,this%MD))
+    if (this%MD>9) then 
+      write(formatChar,'(A4,I1,A5)') '(7X,',this%MD-9,'F7.3)'
+      write(10,formatChar) (this%MaD(i),i=10,this%MD)
+    endif
+    do i=1,this%ND
+      write(10,102) this%AD(i), (this%CD(i,j),j=1,min(9,this%MD))
+      if (this%MD>9)  write(10,formatChar) (this%CD(i,j),j=10,this%MD)
+    enddo
+
+    ! Moment
+    write(10,101) (this%MaM(i),i=1,min(9,this%MM))
+    if (this%MM>9) then 
+      write(formatChar,'(A4,I1,A5)') '(7X,',this%MM-9,'F7.3)'
+      write(10,formatChar) (this%MaM(i),i=10,this%MM)
+    endif
+    do i=1,this%NM
+      write(10,102) this%AM(i), (this%CM(i,j),j=1,min(9,this%MM))
+      if (this%MM>9)  write(10,formatChar) (this%CM(i,j),j=10,this%MM)
+    enddo
+
+    close(10)
+
+    100 format (A30,6I2)
+    101 format (7X,9F7.3)
+    102 format (F7.2,9F7.3)
+  end subroutine writefile
+
+  ! Reads from C81 file to allocatable arrays
+  subroutine readC81(C81filename,airfoilName,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
+    character(len=*), intent(in) :: C81filename
+    character(len=30), intent(out) :: airfoilName
     real, allocatable, intent(out), dimension(:) :: MaL, MaD, MaM
     real, allocatable, intent(out), dimension(:) :: AL, AD, AM
     real, allocatable, intent(out), dimension(:,:) :: CL, CD, CM
@@ -17,7 +95,7 @@ contains
     open(unit=10, file=C81filename, status='old', action='read', iostat=stat)
     if (stat>0) error stop 'ERROR: File not found'
 
-    read(10,100) airfoil_name,ML,NL,MD,ND,MM,NM
+    read(10,100) airfoilName,ML,NL,MD,ND,MM,NM
     allocate(MaL(ML))
     allocate(MaD(MD))
     allocate(MaM(MM))
@@ -67,76 +145,6 @@ contains
     101 format (7X,9F7.0)
     102 format (10F7.0)
   end subroutine readC81
-
-  ! Writes data arrays to C81 file
-  subroutine writeC81(C81filename,airfoil_name,MaL,AL,CL,MaD,AD,CD,MaM,AM,CM)
-    character(len=*), intent(in) :: C81filename
-    character(len=30), intent(in) :: airfoil_name
-    real, intent(in), dimension(:) :: MaL, MaD, MaM
-    real, intent(in), dimension(:) :: AL, AD, AM
-    real, intent(in), dimension(:,:) :: CL, CD, CM
-    integer :: ML, NL, MD, ND, MM, NM
-    integer :: i, j
-    integer :: stat
-    character(len=10) :: formatChar
-    character(len=1) :: overwriteOption
-
-    open(unit=10,file=C81filename, status='new', action='write', iostat=stat)
-    if (stat>0) then
-      print*, 'File '//trim(C81filename)//' already exists!'
-      write(*,'(A)',advance='no') ' Okay to overwrite (y/n)? '
-      read(*,*) overwriteOption
-      print*
-      if (overwriteOption .ne. 'y') stop
-    endif
-
-    ML = size(MaL,1)
-    MD = size(MaD,1)
-    MM = size(MaM,1)
-    NL = size(AL,1)
-    ND = size(AD,1)
-    NM = size(AM,1)
-
-    write(10,100) airfoil_name,ML,NL,MD,ND,MM,NM
-    ! Lift
-    write(10,101) (MaL(i),i=1,min(9,ML))
-    if (ML>9) then 
-      write(formatChar,'(A4,I1,A5)') '(7X,',ML-9,'F7.3)'
-      write(10,formatChar) (MaL(i),i=10,ML)
-    endif
-    do i=1,NL
-      write(10,102) AL(i), (CL(i,j),j=1,min(9,ML))
-      if (ML>9)  write(10,formatChar) (CL(i,j),j=10,ML)
-    enddo
-
-    ! Drag
-    write(10,101) (MaD(i),i=1,min(9,MD))
-    if (MD>9) then 
-      write(formatChar,'(A4,I1,A5)') '(7X,',MD-9,'F7.3)'
-      write(10,formatChar) (MaD(i),i=10,MD)
-    endif
-    do i=1,ND
-      write(10,102) AD(i), (CD(i,j),j=1,min(9,MD))
-      if (MD>9)  write(10,formatChar) (CD(i,j),j=10,MD)
-    enddo
-
-    ! Moment
-    write(10,101) (MaM(i),i=1,min(9,MM))
-    if (MM>9) then 
-      write(formatChar,'(A4,I1,A5)') '(7X,',MM-9,'F7.3)'
-      write(10,formatChar) (MaM(i),i=10,MM)
-    endif
-    do i=1,NM
-      write(10,102) AM(i), (CM(i,j),j=1,min(9,MM))
-      if (MM>9)  write(10,formatChar) (CM(i,j),j=10,MM)
-    enddo
-
-    close(10)
-
-    100 format (A30,6I2)
-    101 format (7X,9F7.3)
-    102 format (F7.2,9F7.3)
-  end subroutine writeC81
 
   ! Gets data from csv formatted file
   function getTable(filename,rows,cols)
