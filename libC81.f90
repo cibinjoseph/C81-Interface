@@ -23,18 +23,20 @@ contains
   class(C81_class) :: this
     character(len=*), intent(in) :: C81filename
     integer :: i, j
-    integer :: stat
+    logical :: fileExists
     character(len=10) :: formatChar
     character(len=1) :: overwriteOption
 
-    open(unit=10,file=C81filename, status='new', action='write', iostat=stat)
-    if (stat>0) then
+    inquire(file=C81filename, exist=fileExists)
+    if (fileExists) then
       print*, 'File '//trim(C81filename)//' already exists!'
       write(*,'(A)',advance='no') ' Okay to overwrite (y/n)? '
       read(*,*) overwriteOption
       print*
-      if (overwriteOption .ne. 'y') stop
+      if ((overwriteOption .ne. 'y') .and. (overwriteOption .ne. 'Y')) stop
     endif
+
+    open(unit=10,file=C81filename, action='write')
 
     this%ML = size(this%MaL,1)
     this%MD = size(this%MaD,1)
