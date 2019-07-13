@@ -159,11 +159,13 @@ contains
     alphaIndx = getInterval(this%AL,alphaQuery)
     machIndx = getInterval(this%MaL,machQuery)
 
-    getCL = this%CL(alphaIndx(1),machIndx(1)) + &
-      this%CL(alphaIndx(1),machIndx(2)) + &
-      this%CL(alphaIndx(2),machIndx(1)) + &
-      this%CL(alphaIndx(2),machIndx(2))
-    getCL = getCL*0.25
+    getCL = getBilinearInterp(alphaQuery,machQuery, &
+      (/this%AL(alphaIndx(1)),this%AL(alphaIndx(2))/), &
+      (/this%MaL(machIndx(1)),this%MaL(machIndx(2))/), &
+      this%CL(alphaIndx(1),machIndx(1)), &
+      this%CL(alphaIndx(1),machIndx(2)), &
+      this%CL(alphaIndx(2),machIndx(1)), &
+      this%CL(alphaIndx(2),machIndx(2)))
   end function getCL
 
   ! Returns value of 2-d interpolated CD
@@ -177,11 +179,13 @@ contains
     alphaIndx = getInterval(this%AL,alphaQuery)
     machIndx = getInterval(this%MaL,machQuery)
 
-    getCD = this%CD(alphaIndx(1),machIndx(1)) + &
-      this%CD(alphaIndx(1),machIndx(2)) + &
-      this%CD(alphaIndx(2),machIndx(1)) + &
-      this%CD(alphaIndx(2),machIndx(2))
-    getCD = getCD*0.25
+    getCD = getBilinearInterp(alphaQuery,machQuery, &
+      (/this%AD(alphaIndx(1)),this%AD(alphaIndx(2))/), &
+      (/this%MaD(machIndx(1)),this%MaD(machIndx(2))/), &
+      this%CD(alphaIndx(1),machIndx(1)), &
+      this%CD(alphaIndx(1),machIndx(2)), &
+      this%CD(alphaIndx(2),machIndx(1)), &
+      this%CD(alphaIndx(2),machIndx(2)))
   end function getCD
 
   ! Returns value of 2-d interpolated CM
@@ -195,11 +199,13 @@ contains
     alphaIndx = getInterval(this%AL,alphaQuery)
     machIndx = getInterval(this%MaL,machQuery)
 
-    getCM = this%CM(alphaIndx(1),machIndx(1)) + &
-      this%CM(alphaIndx(1),machIndx(2)) + &
-      this%CM(alphaIndx(2),machIndx(1)) + &
-      this%CM(alphaIndx(2),machIndx(2))
-    getCM = getCM*0.25
+    getCM = getBilinearInterp(alphaQuery,machQuery, &
+      (/this%AM(alphaIndx(1)),this%AM(alphaIndx(2))/), &
+      (/this%MaM(machIndx(1)),this%MaM(machIndx(2))/), &
+      this%CM(alphaIndx(1),machIndx(1)), &
+      this%CM(alphaIndx(1),machIndx(2)), &
+      this%CM(alphaIndx(2),machIndx(1)), &
+      this%CM(alphaIndx(2),machIndx(2)))
   end function getCM
 
   ! Returns upper and lower indices of a 1-d sorted array 
@@ -234,6 +240,22 @@ contains
       indx(1) = indx(2)
     endif
   end function getInterval
+
+  ! Get bilinearly interpolated values at (x,y)
+  function getBilinearInterp(x,y,xvec,yvec,f11,f12,f21,f22)
+    real, intent(in) :: x, y
+    real, intent(in), dimension(2) :: xvec, yvec
+    real, intent(in) :: f11, f12, f21, f22
+    real :: getBilinearInterp
+    real, dimension(2,2) :: fMat
+
+    fMat(1,:) = (/f11,f12/)
+    fMat(2,:) = (/f21,f22/)
+
+    getBilinearInterp = dot_product((/xvec(2)-x,x-xvec(1)/),matmul(fMat,(/yvec(2)-y,y-yvec(1)/)))
+    getBilinearInterp = getBilinearInterp/(xvec(2)-xvec(1))/(yvec(2)-yvec(1))
+
+  end function getBilinearInterp
 
   ! Gets data from csv formatted file
   function getTable(filename,rows,cols)
