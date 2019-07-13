@@ -16,7 +16,7 @@ program demo2
 
 
   ! Read airfoil data from CSV file
-  A=getTable('flatplate.csv',rows,cols)
+  A=getTable('Samples/flatplate.csv',rows,cols)
 
   ! Allocate arrays
   allocate(C81%MaL(nMach))
