@@ -81,7 +81,7 @@ contains
 
     close(10)
 
-    100 format (A30,6I2)
+    100 format (A30,6I0.2)
     101 format (7X,9F7.3)
     102 format (F7.2,9F7.3)
   end subroutine writefile
