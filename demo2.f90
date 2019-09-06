@@ -6,7 +6,7 @@ program demo2
   use libC81
   implicit none
 
-  integer, parameter :: rows = 56
+  integer, parameter :: rows = 18
   integer, parameter :: cols = 5
   integer, parameter :: nMach = 4
   integer :: i,j
@@ -16,7 +16,7 @@ program demo2
 
 
   ! Read airfoil data from CSV file
-  A=getTable('Samples/NACA63A012.csv',rows,cols)
+  A=getTable('Samples/NACA23012.csv',rows,cols)
 
   ! Allocate arrays
   allocate(C81%MaL(nMach))
@@ -30,7 +30,7 @@ program demo2
   allocate(C81%CM(rows-1,nMach))
 
   ! Specify airfoil name
-  C81%airfoilName = 'NACA 63A012'
+  C81%airfoilName = 'NACA 23012'
 
   ! Copy values from read array to variables
   C81%MaL = A(1,2:)
@@ -51,6 +51,6 @@ program demo2
   C81%CM = C81%CL
 
   ! Write airfoil data to C81 file
-  call c81%writefile('Samples/NACA63A012.C81')
+  call c81%writefile('Samples/NACA23012.C81')
 
 end program demo2
