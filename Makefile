@@ -15,6 +15,10 @@ demo2:
 	make lib
 	$(FC) demo2.f90 libC81.o -o demo2.out
 
+demo3:
+	make lib
+	$(FC) demo3.f90 libC81.o -o demo3.out
+
 change:
 	@make -s demo2
 	@yes y | ./demo2.out
