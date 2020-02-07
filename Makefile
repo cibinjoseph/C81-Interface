@@ -21,7 +21,7 @@ changes:
 
 docum: ford_doc.md
 	rm -rf docs/src
-	ford -p docs/ford_doc ford_doc.md
+	ford -p ford_doc ford_doc.md
 
 clean:
 	rm -f *.o *.mod *.out
