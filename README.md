@@ -1,4 +1,4 @@
-# C81_Interface
+# C81-Interface
 Subroutines for reading and writing C81 airfoil tables
 
 **libC81.f90**  
