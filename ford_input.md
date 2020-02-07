@@ -1,7 +1,7 @@
 project: C81 Interface
 project_dir: .
 src_dir: .
-output_dir: ./docs
+output_dir: ./docs/ford_output
 project_github: https://github.com/cibinjoseph/C81-Interface
 project_website: https://github.com
 summary: Fortran subroutines for reading and writing C81 airfoil tables

@@ -19,9 +19,9 @@ changes:
 	@yes y | ./demo2.out
 	@diff -q prevCopy Samples/naca6403_Re20k.C81 || exit 0
 
-docum: ford_doc.md
-	rm -rf docs/src
-	ford -p ford_doc ford_doc.md
+docum: ford_input.md
+	rm -rf docs/ford_ouput/src
+	ford -p docs/ford_input ford_input.md
 
 clean:
 	rm -f *.o *.mod *.out
