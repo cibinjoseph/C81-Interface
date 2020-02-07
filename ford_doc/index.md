@@ -1,5 +1,5 @@
 title: README
-This set of programs was created owing to the lack of available open-source interfaces to the C81 airfoil table format. This package contains Fortran subroutines to read, write and create from scratch C81 formatted files.
+This set of programs was created owing to the lack of available open-source interfaces to the C81 airfoil table format. This package contains Fortran subroutines to read, write and create from scratch C81 formatted airfoil performance files.
 
 ### C81 File
 A C81 airfoil performance table is a text file that lists coefficients of lift, drag, and pitching moment of an airfoil as functions of angle of attack for a range of Mach numbers. This file is often used as input to reduced-order flight dynamics simulation programs for estimation of aerodynamic forces and moments. The data obtained using this format is typically used to implement lookup tables with linear interpolation. The angles of attack are generally specified from -180 to +180 degrees and the Mach numbers over a desired range. Lift, drag and moment coefficients are each tabulated one below the other as two-dimensional tables in a fixed spacing format. Data for these tables are usually obtained from CFD or experiments.
