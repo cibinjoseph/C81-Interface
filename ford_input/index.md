@@ -40,4 +40,4 @@ MD = Number of drag coefficient Machs
 ```
 
 ### Contents of the repository
-This repository contains a module file named libC81.f90 containing the subroutines and functions for interfacing with C81 files. It also contains a few demo fortran programs that exemplify the usage of the module. Detailed information is available in the sections of this documentation corresponding to each file.
+This repository contains a module file named libC81.f90 having the subroutines and functions for interfacing with C81 files. It also contains a few demo fortran programs that exemplify the usage of the module. Detailed information is available in the sections of this documentation corresponding to each file.
