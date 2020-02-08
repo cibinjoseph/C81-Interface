@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="13.8% of total for procedures.">25 statements</a>
+    title="13.6% of total for procedures.">25 statements</a>
      </li> 
      
      
@@ -214,6 +214,9 @@ public function getInterval(A, x) result(indx)
   
 
 
+    
+    <p>Returns upper and lower indices of a 1-d sorted array 
+ using binary search in which a search value lies </p>
     
 
     <h3>Arguments</h3>
@@ -298,29 +301,29 @@ public function getInterval(A, x) result(indx)
 <polygon fill="none" stroke="black" points="153,-87 90,-87 90,-63 153,-63 153,-87"/>
 <text text-anchor="middle" x="121.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">getInterval</text>
 </g>
-<!-- proc~getcl -->
-<g id="proc~~getinterval~~CalledByGraph_node2" class="node"><title>proc~getcl</title>
-<g id="a_proc~~getinterval~~CalledByGraph_node2"><a xlink:href=".././proc/getcl.html" xlink:title="getCL">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="54,-150 0,-150 0,-126 54,-126 54,-150"/>
-<text text-anchor="middle" x="27" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getCL</text>
-</a>
-</g>
-</g>
-<!-- proc~getcl&#45;&gt;proc~getinterval -->
-<g id="proc~~getinterval~~CalledByGraph_edge1" class="edge"><title>proc~getcl&#45;&gt;proc~getinterval</title>
-<path fill="none" stroke="#000000" d="M45.8349,-125.853C59.5273,-116.527 78.6446,-103.507 94.1069,-92.9759"/>
-<polygon fill="#000000" stroke="#000000" points="96.4249,-95.6318 102.72,-87.1097 92.4845,-89.8462 96.4249,-95.6318"/>
-</g>
 <!-- proc~getcm -->
-<g id="proc~~getinterval~~CalledByGraph_node3" class="node"><title>proc~getcm</title>
-<g id="a_proc~~getinterval~~CalledByGraph_node3"><a xlink:href=".././proc/getcm.html" xlink:title="getCM">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="54,-108 0,-108 0,-84 54,-84 54,-108"/>
-<text text-anchor="middle" x="27" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getCM</text>
+<g id="proc~~getinterval~~CalledByGraph_node2" class="node"><title>proc~getcm</title>
+<g id="a_proc~~getinterval~~CalledByGraph_node2"><a xlink:href=".././proc/getcm.html" xlink:title="getCM">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="54,-150 0,-150 0,-126 54,-126 54,-150"/>
+<text text-anchor="middle" x="27" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getCM</text>
 </a>
 </g>
 </g>
 <!-- proc~getcm&#45;&gt;proc~getinterval -->
-<g id="proc~~getinterval~~CalledByGraph_edge2" class="edge"><title>proc~getcm&#45;&gt;proc~getinterval</title>
+<g id="proc~~getinterval~~CalledByGraph_edge1" class="edge"><title>proc~getcm&#45;&gt;proc~getinterval</title>
+<path fill="none" stroke="#000000" d="M45.8349,-125.853C59.5273,-116.527 78.6446,-103.507 94.1069,-92.9759"/>
+<polygon fill="#000000" stroke="#000000" points="96.4249,-95.6318 102.72,-87.1097 92.4845,-89.8462 96.4249,-95.6318"/>
+</g>
+<!-- proc~getcl -->
+<g id="proc~~getinterval~~CalledByGraph_node3" class="node"><title>proc~getcl</title>
+<g id="a_proc~~getinterval~~CalledByGraph_node3"><a xlink:href=".././proc/getcl.html" xlink:title="getCL">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="54,-108 0,-108 0,-84 54,-84 54,-108"/>
+<text text-anchor="middle" x="27" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getCL</text>
+</a>
+</g>
+</g>
+<!-- proc~getcl&#45;&gt;proc~getinterval -->
+<g id="proc~~getinterval~~CalledByGraph_edge2" class="edge"><title>proc~getcl&#45;&gt;proc~getinterval</title>
 <path fill="none" stroke="#000000" d="M54.2594,-90.0384C62.2445,-88.2256 71.2141,-86.1892 79.9124,-84.2145"/>
 <polygon fill="#000000" stroke="#000000" points="80.9467,-87.5688 89.9236,-81.9417 79.3969,-80.7425 80.9467,-87.5688"/>
 </g>
@@ -468,7 +471,9 @@ public function getInterval(A, x) result(indx)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">getInterval</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">indx</span><span class="p">)</span>
-    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">A</span>
+    <span class="c">!! Returns upper and lower indices of a 1-d sorted array </span>
+    <span class="c">!! using binary search in which a search value lies </span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">A</span> 
     <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span>
     <span class="kt">integer</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="kd">::</span> <span class="n">indx</span>  <span class="c">! Left and right indices </span>
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span>
@@ -518,7 +523,7 @@ public function getInterval(A, x) result(indx)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-02-07T17:06:23.133320 
+             on 2020-02-08T09:55:36.034793 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> C81 Interface was developed by Cibin Joseph</p></div>

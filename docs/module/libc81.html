@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="100.0% of total for modules and submodules.">198 statements</a>
+    title="100.0% of total for modules and submodules.">212 statements</a>
      </li> 
      
      
@@ -273,29 +273,29 @@
 <polygon fill="none" stroke="black" points="54,-66 0,-66 0,-42 54,-42 54,-66"/>
 <text text-anchor="middle" x="27" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">libC81</text>
 </g>
-<!-- program~demo2 -->
-<g id="module~~libc81~~UsedByGraph_node2" class="node"><title>program~demo2</title>
-<g id="a_module~~libc81~~UsedByGraph_node2"><a xlink:href=".././program/demo2.html" xlink:title="demo2">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="144,-108 90,-108 90,-84 144,-84 144,-108"/>
-<text text-anchor="middle" x="117" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo2</text>
-</a>
-</g>
-</g>
-<!-- program~demo2&#45;&gt;module~libc81 -->
-<g id="module~~libc81~~UsedByGraph_edge1" class="edge"><title>program~demo2&#45;&gt;module~libc81</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M90.5468,-83.8519C81.7904,-79.6727 71.8346,-74.9211 62.4815,-70.4571"/>
-<polygon fill="#000000" stroke="#000000" points="63.9284,-67.2695 53.396,-66.1208 60.9133,-73.5869 63.9284,-67.2695"/>
-</g>
 <!-- program~demo1 -->
-<g id="module~~libc81~~UsedByGraph_node3" class="node"><title>program~demo1</title>
-<g id="a_module~~libc81~~UsedByGraph_node3"><a xlink:href=".././program/demo1.html" xlink:title="demo1">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="144,-66 90,-66 90,-42 144,-42 144,-66"/>
-<text text-anchor="middle" x="117" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo1</text>
+<g id="module~~libc81~~UsedByGraph_node2" class="node"><title>program~demo1</title>
+<g id="a_module~~libc81~~UsedByGraph_node2"><a xlink:href=".././program/demo1.html" xlink:title="demo1">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="144,-108 90,-108 90,-84 144,-84 144,-108"/>
+<text text-anchor="middle" x="117" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo1</text>
 </a>
 </g>
 </g>
 <!-- program~demo1&#45;&gt;module~libc81 -->
-<g id="module~~libc81~~UsedByGraph_edge2" class="edge"><title>program~demo1&#45;&gt;module~libc81</title>
+<g id="module~~libc81~~UsedByGraph_edge1" class="edge"><title>program~demo1&#45;&gt;module~libc81</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M90.5468,-83.8519C81.7904,-79.6727 71.8346,-74.9211 62.4815,-70.4571"/>
+<polygon fill="#000000" stroke="#000000" points="63.9284,-67.2695 53.396,-66.1208 60.9133,-73.5869 63.9284,-67.2695"/>
+</g>
+<!-- program~demo2 -->
+<g id="module~~libc81~~UsedByGraph_node3" class="node"><title>program~demo2</title>
+<g id="a_module~~libc81~~UsedByGraph_node3"><a xlink:href=".././program/demo2.html" xlink:title="demo2">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="144,-66 90,-66 90,-42 144,-42 144,-66"/>
+<text text-anchor="middle" x="117" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">demo2</text>
+</a>
+</g>
+</g>
+<!-- program~demo2&#45;&gt;module~libc81 -->
+<g id="module~~libc81~~UsedByGraph_edge2" class="edge"><title>program~demo2&#45;&gt;module~libc81</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M89.5971,-54C81.6068,-54 72.6894,-54 64.1759,-54"/>
 <polygon fill="#000000" stroke="#000000" points="64.081,-50.5001 54.081,-54 64.081,-57.5001 64.081,-50.5001"/>
 </g>
@@ -472,6 +472,9 @@
   </h3></div>
   <div class="panel-body">
     
+    
+    <p>Base class for C81 performance data</p>
+    
      
      <h4>Components</h4>
     
@@ -508,7 +511,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>ML</strong></td><td></td><td></td><td></td>
+  <td><strong>ML</strong></td><td></td><td></td><td><p>No. of lift coefficient machs</p></td>
   
 </tr>
 
@@ -522,7 +525,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>NL</strong></td><td></td><td></td><td></td>
+  <td><strong>NL</strong></td><td></td><td></td><td><p>No. of lift coefficient alphas</p></td>
   
 </tr>
 
@@ -536,7 +539,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>MD</strong></td><td></td><td></td><td></td>
+  <td><strong>MD</strong></td><td></td><td></td><td><p>No. of drag coefficient machs</p></td>
   
 </tr>
 
@@ -550,7 +553,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>ND</strong></td><td></td><td></td><td></td>
+  <td><strong>ND</strong></td><td></td><td></td><td><p>No. of drag coefficient alphas</p></td>
   
 </tr>
 
@@ -564,7 +567,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>MM</strong></td><td></td><td></td><td></td>
+  <td><strong>MM</strong></td><td></td><td></td><td><p>No. of moment coefficient machs</p></td>
   
 </tr>
 
@@ -578,7 +581,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>NM</strong></td><td></td><td></td><td></td>
+  <td><strong>NM</strong></td><td></td><td></td><td><p>No. of moment coefficient alphas  </p></td>
   
 </tr>
 
@@ -592,7 +595,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>MaL</strong></td><td></td><td></td><td></td>
+  <td><strong>MaL</strong></td><td></td><td></td><td><p>Machs for lift</p></td>
   
 </tr>
 
@@ -606,7 +609,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>MaD</strong></td><td></td><td></td><td></td>
+  <td><strong>MaD</strong></td><td></td><td></td><td><p>Machs for drag</p></td>
   
 </tr>
 
@@ -620,7 +623,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>MaM</strong></td><td></td><td></td><td></td>
+  <td><strong>MaM</strong></td><td></td><td></td><td><p>Machs for moment</p></td>
   
 </tr>
 
@@ -634,7 +637,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>AL</strong></td><td></td><td></td><td></td>
+  <td><strong>AL</strong></td><td></td><td></td><td><p>Alphas for lift  </p></td>
   
 </tr>
 
@@ -648,7 +651,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>AD</strong></td><td></td><td></td><td></td>
+  <td><strong>AD</strong></td><td></td><td></td><td><p>Alphas for drag</p></td>
   
 </tr>
 
@@ -662,7 +665,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>AM</strong></td><td></td><td></td><td></td>
+  <td><strong>AM</strong></td><td></td><td></td><td><p>Alphas for moment</p></td>
   
 </tr>
 
@@ -676,7 +679,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:,:)</td><td>::</td>
-  <td><strong>CL</strong></td><td></td><td></td><td></td>
+  <td><strong>CL</strong></td><td></td><td></td><td><p>Lift coefficient  </p></td>
   
 </tr>
 
@@ -690,7 +693,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:,:)</td><td>::</td>
-  <td><strong>CD</strong></td><td></td><td></td><td></td>
+  <td><strong>CD</strong></td><td></td><td></td><td><p>Drag coefficient</p></td>
   
 </tr>
 
@@ -704,7 +707,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:,:)</td><td>::</td>
-  <td><strong>CM</strong></td><td></td><td></td><td></td>
+  <td><strong>CM</strong></td><td></td><td></td><td><p>Moment coefficient</p></td>
   
 </tr>
 
@@ -760,6 +763,15 @@ public function <a href='../proc/getcl.html'>getCL</a>(this, alphaQuery, machQue
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>Returns value of 2-d linear interpolated CL
+ for a given alphaQuery and machQuery values</p>
     
     <h4>Arguments</h4>
     
@@ -850,6 +862,15 @@ public function <a href='../proc/getcd.html'>getCD</a>(this, alphaQuery, machQue
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>Returns value of 2-d linearly interpolated CD
+ for given alphaQuery and machQuery values</p>
     
     <h4>Arguments</h4>
     
@@ -940,6 +961,15 @@ public function <a href='../proc/getcm.html'>getCM</a>(this, alphaQuery, machQue
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>Returns value of 2-d linearly interpolated CM
+ for given alphaQuery and machQuery values</p>
     
     <h4>Arguments</h4>
     
@@ -1030,6 +1060,15 @@ public function <a href='../proc/getinterval.html'>getInterval</a>(A, x) result(
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>Returns upper and lower indices of a 1-d sorted array 
+ using binary search in which a search value lies </p>
     
     <h4>Arguments</h4>
     
@@ -1105,6 +1144,14 @@ public function <a href='../proc/getbilinearinterp.html'>getBilinearInterp</a>(x
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>Returns bilinearly interpolated values at (x,y)</p>
     
     <h4>Arguments</h4>
     
@@ -1130,7 +1177,7 @@ public function <a href='../proc/getbilinearinterp.html'>getBilinearInterp</a>(x
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>x</strong></td><td></td>
+  <td><strong>x</strong></td><td><p>Queried x</p></td>
   
 </tr>
 
@@ -1145,7 +1192,7 @@ public function <a href='../proc/getbilinearinterp.html'>getBilinearInterp</a>(x
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>y</strong></td><td></td>
+  <td><strong>y</strong></td><td><p>Queried y</p></td>
   
 </tr>
 
@@ -1270,6 +1317,14 @@ public function <a href='../proc/gettable.html'>getTable</a>(filename, rows, col
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>Returns data from csv formatted file</p>
     
     <h4>Arguments</h4>
     
@@ -1310,7 +1365,7 @@ public function <a href='../proc/gettable.html'>getTable</a>(filename, rows, col
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>rows</strong></td><td></td>
+  <td><strong>rows</strong></td><td><p>No. of rows</p></td>
   
 </tr>
 
@@ -1325,7 +1380,7 @@ public function <a href='../proc/gettable.html'>getTable</a>(filename, rows, col
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>cols</strong></td><td></td>
+  <td><strong>cols</strong></td><td><p>No. of columns </p></td>
   
 </tr>
 
@@ -1368,6 +1423,14 @@ public subroutine <a href='../proc/writefile.html'>writefile</a>(this, C81filena
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>Writes C81 class data to C81 file</p>
     
     <h4>Arguments</h4>
     
@@ -1434,6 +1497,14 @@ public subroutine <a href='../proc/readfile.html'>readfile</a>(this, C81filename
   <div class="panel-body">
        
     
+
+
+
+
+
+
+
+<p>Reads from C81 file to C81 class</p>
     
     <h4>Arguments</h4>
     
@@ -1509,7 +1580,7 @@ public subroutine <a href='../proc/readfile.html'>readfile</a>(this, C81filename
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-02-07T17:06:23.133320 
+             on 2020-02-08T09:55:36.034793 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> C81 Interface was developed by Cibin Joseph</p></div>

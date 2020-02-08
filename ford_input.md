@@ -18,6 +18,6 @@ source: true
 graph: true
 search: true
 print_creation_date: true
-extra_filetypes: m %
+extra_filetypes:
 
 A collection of subroutines and functions in Fortran that help with parsing and creating C81 formatted airfoil tables.

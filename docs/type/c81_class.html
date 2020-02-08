@@ -132,7 +132,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="<p>100.0% of total for derived types.</p>Including implementation: 145 statements, 100.0% of total for derived types.">13 statements</a>
+    title="<p>100.0% of total for derived types.</p>Including implementation: 156 statements, 100.0% of total for derived types.">24 statements</a>
      </li> 
      
      
@@ -267,7 +267,7 @@
     
     <div class="col-md-9" id='text'>
       <h2>type, public :: C81_class</h2>
-    
+    <p>Base class for C81 performance data</p>
     
     
     
@@ -409,7 +409,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>ML</strong></td><td></td><td></td><td></td>
+  <td><strong>ML</strong></td><td></td><td></td><td><p>No. of lift coefficient machs</p></td>
   
 </tr>
 
@@ -423,7 +423,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>NL</strong></td><td></td><td></td><td></td>
+  <td><strong>NL</strong></td><td></td><td></td><td><p>No. of lift coefficient alphas</p></td>
   
 </tr>
 
@@ -437,7 +437,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>MD</strong></td><td></td><td></td><td></td>
+  <td><strong>MD</strong></td><td></td><td></td><td><p>No. of drag coefficient machs</p></td>
   
 </tr>
 
@@ -451,7 +451,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>ND</strong></td><td></td><td></td><td></td>
+  <td><strong>ND</strong></td><td></td><td></td><td><p>No. of drag coefficient alphas</p></td>
   
 </tr>
 
@@ -465,7 +465,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>MM</strong></td><td></td><td></td><td></td>
+  <td><strong>MM</strong></td><td></td><td></td><td><p>No. of moment coefficient machs</p></td>
   
 </tr>
 
@@ -479,7 +479,7 @@
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>NM</strong></td><td></td><td></td><td></td>
+  <td><strong>NM</strong></td><td></td><td></td><td><p>No. of moment coefficient alphas  </p></td>
   
 </tr>
 
@@ -493,7 +493,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>MaL</strong></td><td></td><td></td><td></td>
+  <td><strong>MaL</strong></td><td></td><td></td><td><p>Machs for lift</p></td>
   
 </tr>
 
@@ -507,7 +507,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>MaD</strong></td><td></td><td></td><td></td>
+  <td><strong>MaD</strong></td><td></td><td></td><td><p>Machs for drag</p></td>
   
 </tr>
 
@@ -521,7 +521,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>MaM</strong></td><td></td><td></td><td></td>
+  <td><strong>MaM</strong></td><td></td><td></td><td><p>Machs for moment</p></td>
   
 </tr>
 
@@ -535,7 +535,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>AL</strong></td><td></td><td></td><td></td>
+  <td><strong>AL</strong></td><td></td><td></td><td><p>Alphas for lift  </p></td>
   
 </tr>
 
@@ -549,7 +549,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>AD</strong></td><td></td><td></td><td></td>
+  <td><strong>AD</strong></td><td></td><td></td><td><p>Alphas for drag</p></td>
   
 </tr>
 
@@ -563,7 +563,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:)</td><td>::</td>
-  <td><strong>AM</strong></td><td></td><td></td><td></td>
+  <td><strong>AM</strong></td><td></td><td></td><td><p>Alphas for moment</p></td>
   
 </tr>
 
@@ -577,7 +577,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:,:)</td><td>::</td>
-  <td><strong>CL</strong></td><td></td><td></td><td></td>
+  <td><strong>CL</strong></td><td></td><td></td><td><p>Lift coefficient  </p></td>
   
 </tr>
 
@@ -591,7 +591,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:,:)</td><td>::</td>
-  <td><strong>CD</strong></td><td></td><td></td><td></td>
+  <td><strong>CD</strong></td><td></td><td></td><td><p>Drag coefficient</p></td>
   
 </tr>
 
@@ -605,7 +605,7 @@
   
   <td>public,</td>
   <td>allocatable, dimension(:,:)</td><td>::</td>
-  <td><strong>CM</strong></td><td></td><td></td><td></td>
+  <td><strong>CM</strong></td><td></td><td></td><td><p>Moment coefficient</p></td>
   
 </tr>
 
@@ -644,6 +644,14 @@ public subroutine <a href='../proc/writefile.html'>writefile</a>(this, C81filena
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Writes C81 class data to C81 file</p>
     
     <h4>Arguments</h4>
     
@@ -723,6 +731,14 @@ public subroutine <a href='../proc/readfile.html'>readfile</a>(this, C81filename
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Reads from C81 file to C81 class</p>
     
     <h4>Arguments</h4>
     
@@ -802,6 +818,15 @@ public function <a href='../proc/getcl.html'>getCL</a>(this, alphaQuery, machQue
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Returns value of 2-d linear interpolated CL
+ for a given alphaQuery and machQuery values</p>
     
     <h4>Arguments</h4>
     
@@ -905,6 +930,15 @@ public function <a href='../proc/getcd.html'>getCD</a>(this, alphaQuery, machQue
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Returns value of 2-d linearly interpolated CD
+ for given alphaQuery and machQuery values</p>
     
     <h4>Arguments</h4>
     
@@ -1008,6 +1042,15 @@ public function <a href='../proc/getcm.html'>getCM</a>(this, alphaQuery, machQue
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Returns value of 2-d linearly interpolated CM
+ for given alphaQuery and machQuery values</p>
     
     <h4>Arguments</h4>
     
@@ -1098,11 +1141,23 @@ public function <a href='../proc/getcm.html'>getCM</a>(this, alphaQuery, machQue
     <section>
     <h3><span class="anchor" id="src"></span>Source Code</h3>
     <div class="highlight"><pre><span></span>  <span class="k">type </span><span class="n">C81_class</span>
+    <span class="c">!! Base class for C81 performance data</span>
     <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span> <span class="kd">::</span> <span class="n">airfoilName</span>
-    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ML</span><span class="p">,</span> <span class="n">NL</span><span class="p">,</span> <span class="n">MD</span><span class="p">,</span> <span class="n">ND</span><span class="p">,</span> <span class="n">MM</span><span class="p">,</span> <span class="n">NM</span>
-    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">MaL</span><span class="p">,</span> <span class="n">MaD</span><span class="p">,</span> <span class="n">MaM</span>
-    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">AL</span><span class="p">,</span> <span class="n">AD</span><span class="p">,</span> <span class="n">AM</span>
-    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:,:)</span> <span class="kd">::</span> <span class="n">CL</span><span class="p">,</span> <span class="n">CD</span><span class="p">,</span> <span class="n">CM</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ML</span>  <span class="c">!! No. of lift coefficient machs</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">NL</span>  <span class="c">!! No. of lift coefficient alphas</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">MD</span>  <span class="c">!! No. of drag coefficient machs</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ND</span>  <span class="c">!! No. of drag coefficient alphas</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">MM</span>  <span class="c">!! No. of moment coefficient machs</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">NM</span>  <span class="c">!! No. of moment coefficient alphas  </span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">MaL</span>  <span class="c">!! Machs for lift</span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">MaD</span>  <span class="c">!! Machs for drag</span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">MaM</span>  <span class="c">!! Machs for moment</span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">AL</span>  <span class="c">!! Alphas for lift  </span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">AD</span>  <span class="c">!! Alphas for drag</span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:)</span> <span class="kd">::</span> <span class="n">AM</span>  <span class="c">!! Alphas for moment</span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:,:)</span> <span class="kd">::</span> <span class="n">CL</span>  <span class="c">!! Lift coefficient  </span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:,:)</span> <span class="kd">::</span> <span class="n">CD</span>  <span class="c">!! Drag coefficient</span>
+    <span class="kt">real</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:,:)</span> <span class="kd">::</span> <span class="n">CM</span>  <span class="c">!! Moment coefficient</span>
   <span class="k">contains</span>
 <span class="k">    procedure</span> <span class="kd">::</span> <span class="n">writefile</span>
     <span class="k">procedure</span> <span class="kd">::</span> <span class="n">readfile</span>
@@ -1130,7 +1185,7 @@ public function <a href='../proc/getcm.html'>getCM</a>(this, alphaQuery, machQue
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-02-07T17:06:23.133320 
+             on 2020-02-08T09:55:36.034793 
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> C81 Interface was developed by Cibin Joseph</p></div>

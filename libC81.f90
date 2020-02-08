@@ -1,13 +1,24 @@
 module libC81
   implicit none
 
-  ! Define C81 class
   type C81_class
+    !! Base class for C81 performance data
     character(len=30) :: airfoilName
-    integer :: ML, NL, MD, ND, MM, NM
-    real, allocatable, dimension(:) :: MaL, MaD, MaM
-    real, allocatable, dimension(:) :: AL, AD, AM
-    real, allocatable, dimension(:,:) :: CL, CD, CM
+    integer :: ML  !! No. of lift coefficient machs
+    integer :: NL  !! No. of lift coefficient alphas
+    integer :: MD  !! No. of drag coefficient machs
+    integer :: ND  !! No. of drag coefficient alphas
+    integer :: MM  !! No. of moment coefficient machs
+    integer :: NM  !! No. of moment coefficient alphas  
+    real, allocatable, dimension(:) :: MaL  !! Machs for lift
+    real, allocatable, dimension(:) :: MaD  !! Machs for drag
+    real, allocatable, dimension(:) :: MaM  !! Machs for moment
+    real, allocatable, dimension(:) :: AL  !! Alphas for lift  
+    real, allocatable, dimension(:) :: AD  !! Alphas for drag
+    real, allocatable, dimension(:) :: AM  !! Alphas for moment
+    real, allocatable, dimension(:,:) :: CL  !! Lift coefficient  
+    real, allocatable, dimension(:,:) :: CD  !! Drag coefficient
+    real, allocatable, dimension(:,:) :: CM  !! Moment coefficient
   contains
     procedure :: writefile
     procedure :: readfile
@@ -18,8 +29,8 @@ module libC81
 
 contains
 
-  ! Writes data arrays to C81 file
   subroutine writefile(this,C81filename)
+  !! Writes C81 class data to C81 file
   class(C81_class) :: this
     character(len=*), intent(in) :: C81filename
     integer :: i, j
@@ -86,8 +97,8 @@ contains
     102 format (F7.2,9F7.3)
   end subroutine writefile
 
-  ! Reads from C81 file to allocatable arrays
   subroutine readfile(this,C81filename)
+  !! Reads from C81 file to C81 class
   class(C81_class) :: this
     character(len=*), intent(in) :: C81filename
     integer :: i, j
@@ -148,9 +159,9 @@ contains
     102 format (10F7.0)
   end subroutine readfile
 
-  ! Returns value of 2-d interpolated CL
-  ! for given alphaQuery and machQuery queries
   function getCL(this,alphaQuery,machQuery)
+  !! Returns value of 2-d linear interpolated CL
+  !! for a given alphaQuery and machQuery values
   class(C81_class) :: this
     real, intent(in) :: alphaQuery, machQuery
     real :: getCL
@@ -168,9 +179,9 @@ contains
       this%CL(alphaIndx(2),machIndx(2)))
   end function getCL
 
-  ! Returns value of 2-d interpolated CD
-  ! for given alphaQuery and machQuery queries
   function getCD(this,alphaQuery,machQuery)
+  !! Returns value of 2-d linearly interpolated CD
+  !! for given alphaQuery and machQuery values
   class(C81_class) :: this
     real, intent(in) :: alphaQuery, machQuery
     real :: getCD
@@ -188,9 +199,9 @@ contains
       this%CD(alphaIndx(2),machIndx(2)))
   end function getCD
 
-  ! Returns value of 2-d interpolated CM
-  ! for given alphaQuery and machQuery queries
   function getCM(this,alphaQuery,machQuery)
+    !! Returns value of 2-d linearly interpolated CM
+    !! for given alphaQuery and machQuery values
   class(C81_class) :: this
     real, intent(in) :: alphaQuery, machQuery
     real :: getCM
@@ -208,10 +219,10 @@ contains
       this%CM(alphaIndx(2),machIndx(2)))
   end function getCM
 
-  ! Returns upper and lower indices of a 1-d sorted array 
-  ! using binary search in which a search value lies 
   function getInterval(A,x) result(indx)
-    real, intent(in), dimension(:) :: A
+    !! Returns upper and lower indices of a 1-d sorted array 
+    !! using binary search in which a search value lies 
+    real, intent(in), dimension(:) :: A 
     real, intent(in) :: x
     integer, dimension(2) :: indx  ! Left and right indices 
     integer :: n, i
@@ -241,10 +252,12 @@ contains
     endif
   end function getInterval
 
-  ! Get bilinearly interpolated values at (x,y)
   function getBilinearInterp(x,y,xvec,yvec,f11,f12,f21,f22)
-    real, intent(in) :: x, y
-    real, intent(in), dimension(2) :: xvec, yvec
+    !! Returns bilinearly interpolated values at (x,y)
+    real, intent(in) :: x !! Queried x
+    real, intent(in) :: y !! Queried y
+    real, intent(in), dimension(2) :: xvec
+    real, intent(in), dimension(2) :: yvec
     real, intent(in) :: f11, f12, f21, f22
     real :: getBilinearInterp
     real, dimension(2,2) :: fMat
@@ -257,10 +270,11 @@ contains
 
   end function getBilinearInterp
 
-  ! Gets data from csv formatted file
   function getTable(filename,rows,cols)
+    !! Returns data from csv formatted file
     character(len=*), intent(in) :: filename
-    integer, intent(in) :: rows, cols
+    integer, intent(in) :: rows  !! No. of rows
+    integer, intent(in) :: cols  !! No. of columns 
     integer :: i, j
     integer :: stat
     real, dimension(rows,cols) :: getTable
