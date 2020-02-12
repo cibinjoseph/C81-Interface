@@ -21,4 +21,5 @@ search: true
 print_creation_date: true
 extra_filetypes:
 
-A collection of subroutines and functions in Fortran that help with parsing and creating C81 formatted airfoil tables.
+A collection of subroutines and functions in Fortran that help with parsing and creating C81 formatted airfoil tables.<br/><br/>
+Documentation available [here](https://cibinjoseph.github.io/C81-Interface/page/index.html).

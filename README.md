@@ -4,7 +4,7 @@
 A collection of subroutines and functions in Fortran that help with parsing and creating C81 formatted airfoil tables.
 
 ## Documentation
-Usage and documentation for the module can be found [here](https://cibinjoseph.github.io/C81-Interface). This documentation was created using the automatic documentation generator for Fortran programs, [FORD](https://github.com/Fortran-FOSS-Programmers/ford).
+Usage and documentation for the module can be found [here](https://cibinjoseph.github.io/C81-Interface/page/index.html). This documentation was created using the automatic documentation generator for Fortran programs, [FORD](https://github.com/Fortran-FOSS-Programmers/ford).
 
 
 ## Author
