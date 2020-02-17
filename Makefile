@@ -1,6 +1,6 @@
 FC = gfortran
 
-all: libC81.o demo1 demo2 demo3
+all: libC81.o demo1.out demo2.out demo3.out  
 
 libC81.o: libC81.f90
 	$(FC) -c libC81.f90
