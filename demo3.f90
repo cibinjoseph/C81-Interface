@@ -6,11 +6,11 @@ program demo3
   use libC81
   implicit none
 
-  integer, parameter :: rowsL = 25
+  integer, parameter :: rowsL = 36
   integer, parameter :: colsL = 4
   integer, parameter :: nMachL = 3
 
-  integer, parameter :: rowsD = 25
+  integer, parameter :: rowsD = 32
   integer, parameter :: colsD = 4
   integer, parameter :: nMachD = 3
 
@@ -22,10 +22,10 @@ program demo3
 
 
   ! Read airfoil lift data from CSV file
-  LMat=getTable('Samples/lift.csv',rowsL,colsL)
+  LMat=getTable('Samples/NACA63A012-CL.csv',rowsL,colsL)
 
   ! Read airfoil drag data from CSV file
-  DMat=getTable('Samples/drag.csv',rowsD,colsD)
+  DMat=getTable('Samples/NACA63A012-CD.csv',rowsD,colsD)
 
   ! Allocate arrays
   allocate(C81%MaL(nMachL))
