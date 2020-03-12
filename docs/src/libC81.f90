@@ -170,13 +170,29 @@ contains
     alphaIndx = getInterval(this%AL,alphaQuery)
     machIndx = getInterval(this%MaL,machQuery)
 
-    getCL = getBilinearInterp(alphaQuery,machQuery, &
-      (/this%AL(alphaIndx(1)),this%AL(alphaIndx(2))/), &
-      (/this%MaL(machIndx(1)),this%MaL(machIndx(2))/), &
-      this%CL(alphaIndx(1),machIndx(1)), &
-      this%CL(alphaIndx(1),machIndx(2)), &
-      this%CL(alphaIndx(2),machIndx(1)), &
-      this%CL(alphaIndx(2),machIndx(2)))
+    if (alphaIndx(1) .eq. alphaIndx(2)) then
+      if (machIndx(1) .eq. machIndx(2)) then
+        getCL = this%CL(alphaIndx(1),machIndx(1))
+      else
+        getCL = this%CL(alphaIndx(1),machIndx(1))+ &
+          (machQuery-this%MaL(machIndx(1))) * &
+          (this%CL(alphaIndx(1),machIndx(2))-this%CL(alphaIndx(1),machIndx(1)))/ &
+          (this%MaL(machIndx(2))-this%MaL(machIndx(1)))
+      endif
+    elseif (machIndx(1) .eq. machIndx(2)) then
+      getCL = this%CL(alphaIndx(1),machIndx(1))+ &
+        (alphaQuery-this%AL(alphaIndx(1))) * &
+        (this%CL(alphaIndx(2),machIndx(1))-this%CL(alphaIndx(1),machIndx(1)))/ &
+        (this%AL(alphaIndx(2))-this%AL(alphaIndx(1)))
+    else
+      getCL = getBilinearInterp(alphaQuery,machQuery, &
+        (/this%AL(alphaIndx(1)),this%AL(alphaIndx(2))/), &
+        (/this%MaL(machIndx(1)),this%MaL(machIndx(2))/), &
+        this%CL(alphaIndx(1),machIndx(1)), &
+        this%CL(alphaIndx(1),machIndx(2)), &
+        this%CL(alphaIndx(2),machIndx(1)), &
+        this%CL(alphaIndx(2),machIndx(2)))
+    endif
   end function getCL
 
   function getCD(this,alphaQuery,machQuery)
@@ -187,16 +203,34 @@ contains
     real :: getCD
     integer, dimension(2) :: alphaIndx, machIndx
 
-    alphaIndx = getInterval(this%AL,alphaQuery)
-    machIndx = getInterval(this%MaL,machQuery)
+    alphaIndx = getInterval(this%AD,alphaQuery)
+    machIndx = getInterval(this%MaD,machQuery)
 
-    getCD = getBilinearInterp(alphaQuery,machQuery, &
-      (/this%AD(alphaIndx(1)),this%AD(alphaIndx(2))/), &
-      (/this%MaD(machIndx(1)),this%MaD(machIndx(2))/), &
-      this%CD(alphaIndx(1),machIndx(1)), &
-      this%CD(alphaIndx(1),machIndx(2)), &
-      this%CD(alphaIndx(2),machIndx(1)), &
-      this%CD(alphaIndx(2),machIndx(2)))
+    if (alphaIndx(1) .eq. alphaIndx(2)) then
+      if (machIndx(1) .eq. machIndx(2)) then
+        getCD = this%CD(alphaIndx(1),machIndx(1))
+      else
+        getCD = this%CD(alphaIndx(1),machIndx(1))+ &
+          (machQuery-this%MaD(machIndx(1))) * &
+          (this%CD(alphaIndx(1),machIndx(2))- &
+          this%CD(alphaIndx(1),machIndx(1)))/ &
+          (this%MaD(machIndx(2))-this%MaD(machIndx(1)))
+      endif
+    elseif (machIndx(1) .eq. machIndx(2)) then
+      getCD = this%CD(alphaIndx(1),machIndx(1))+ &
+        (alphaQuery-this%AD(alphaIndx(1))) * &
+        (this%CD(alphaIndx(2),machIndx(1))- &
+        this%CD(alphaIndx(1),machIndx(1)))/ &
+        (this%AD(alphaIndx(2))-this%AD(alphaIndx(1)))
+    else
+      getCD = getBilinearInterp(alphaQuery,machQuery, &
+        (/this%AD(alphaIndx(1)),this%AD(alphaIndx(2))/), &
+        (/this%MaD(machIndx(1)),this%MaD(machIndx(2))/), &
+        this%CD(alphaIndx(1),machIndx(1)), &
+        this%CD(alphaIndx(1),machIndx(2)), &
+        this%CD(alphaIndx(2),machIndx(1)), &
+        this%CD(alphaIndx(2),machIndx(2)))
+    endif
   end function getCD
 
   function getCM(this,alphaQuery,machQuery)
@@ -207,16 +241,34 @@ contains
     real :: getCM
     integer, dimension(2) :: alphaIndx, machIndx
 
-    alphaIndx = getInterval(this%AL,alphaQuery)
-    machIndx = getInterval(this%MaL,machQuery)
+    alphaIndx = getInterval(this%AM,alphaQuery)
+    machIndx = getInterval(this%MaM,machQuery)
 
-    getCM = getBilinearInterp(alphaQuery,machQuery, &
-      (/this%AM(alphaIndx(1)),this%AM(alphaIndx(2))/), &
-      (/this%MaM(machIndx(1)),this%MaM(machIndx(2))/), &
-      this%CM(alphaIndx(1),machIndx(1)), &
-      this%CM(alphaIndx(1),machIndx(2)), &
-      this%CM(alphaIndx(2),machIndx(1)), &
-      this%CM(alphaIndx(2),machIndx(2)))
+    if (alphaIndx(1) .eq. alphaIndx(2)) then
+      if (machIndx(1) .eq. machIndx(2)) then
+        getCM = this%CM(alphaIndx(1),machIndx(1))
+      else
+        getCM = this%CM(alphaIndx(1),machIndx(1))+ &
+          (machQuery-this%MaM(machIndx(1))) * &
+          (this%CM(alphaIndx(1),machIndx(2))- &
+          this%CM(alphaIndx(1),machIndx(1)))/ &
+          (this%MaM(machIndx(2))-this%MaM(machIndx(1)))
+      endif
+    elseif (machIndx(1) .eq. machIndx(2)) then
+      getCM = this%CM(alphaIndx(1),machIndx(1))+ &
+        (alphaQuery-this%AM(alphaIndx(1))) * &
+        (this%CM(alphaIndx(2),machIndx(1))- &
+        this%CM(alphaIndx(1),machIndx(1)))/ &
+        (this%AM(alphaIndx(2))-this%AM(alphaIndx(1)))
+    else
+      getCM = getBilinearInterp(alphaQuery,machQuery, &
+        (/this%AM(alphaIndx(1)),this%AM(alphaIndx(2))/), &
+        (/this%MaM(machIndx(1)),this%MaM(machIndx(2))/), &
+        this%CM(alphaIndx(1),machIndx(1)), &
+        this%CM(alphaIndx(1),machIndx(2)), &
+        this%CM(alphaIndx(2),machIndx(1)), &
+        this%CM(alphaIndx(2),machIndx(2)))
+    endif
   end function getCM
 
   function getInterval(A,x) result(indx)
@@ -280,7 +332,10 @@ contains
     real, dimension(rows,cols) :: getTable
 
     open(unit=10, file=filename, status='old', action='read', iostat=stat)
-    if (stat>0) error stop 'ERROR: File not found'
+    if (stat>0) then
+      print*, 'ERROR: '//trim(filename)//' file not found'
+      error stop 
+    endif
     do i=1,rows
       read(10,*) (getTable(i,j),j=1,cols)
     enddo
